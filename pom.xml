@@ -10,11 +10,13 @@
 	<packaging>pom</packaging>
 
 	<modules>
+		<module>mall-common</module>
 		<module>mall-coupon</module>
 		<module>mall-member</module>
 		<module>mall-order</module>
 		<module>mall-product</module>
 		<module>mall-warehouse</module>
+		<module>renren-generator</module>
 	</modules>
 
 

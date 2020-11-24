@@ -14,7 +14,7 @@ drop table if exists pms_category;
 
 drop table if exists pms_category_brand_relation;
 
-drop table if exists pms_comment_replay;
+drop table if exists pms_comment_reply;
 
 drop table if exists pms_product_attr_value;
 
@@ -49,7 +49,7 @@ create table pms_attr
    primary key (attr_id)
 );
 
-alter table pms_attr comment '商品属性';
+alter table pms_attr;
 
 /*==============================================================*/
 /* Table: pms_attr_attrgroup_relation                           */
@@ -63,7 +63,7 @@ create table pms_attr_attrgroup_relation
    primary key (id)
 );
 
-alter table pms_attr_attrgroup_relation comment '属性&属性分组关联';
+alter table pms_attr_attrgroup_relation;
 
 /*==============================================================*/
 /* Table: pms_attr_group                                        */
@@ -79,7 +79,7 @@ create table pms_attr_group
    primary key (attr_group_id)
 );
 
-alter table pms_attr_group comment '属性分组';
+alter table pms_attr_group;
 
 /*==============================================================*/
 /* Table: pms_brand                                             */
@@ -96,7 +96,7 @@ create table pms_brand
    primary key (brand_id)
 );
 
-alter table pms_brand comment '品牌';
+alter table pms_brand;
 
 /*==============================================================*/
 /* Table: pms_category                                          */
@@ -115,7 +115,7 @@ create table pms_category
    primary key (cat_id)
 );
 
-alter table pms_category comment '商品三级分类';
+alter table pms_category;
 
 /*==============================================================*/
 /* Table: pms_category_brand_relation                           */
@@ -130,12 +130,12 @@ create table pms_category_brand_relation
    primary key (id)
 );
 
-alter table pms_category_brand_relation comment '品牌分类关联';
+alter table pms_category_brand_relation;
 
 /*==============================================================*/
-/* Table: pms_comment_replay                                    */
+/* Table: pms_comment_reply                                    */
 /*==============================================================*/
-create table pms_comment_replay
+create table pms_comment_reply
 (
    id                   bigint not null auto_increment comment 'id',
    comment_id           bigint comment '评论id',
@@ -143,7 +143,7 @@ create table pms_comment_replay
    primary key (id)
 );
 
-alter table pms_comment_replay comment '商品评价回复关系';
+alter table pms_comment_reply;
 
 /*==============================================================*/
 /* Table: pms_product_attr_value                                */
@@ -160,7 +160,7 @@ create table pms_product_attr_value
    primary key (id)
 );
 
-alter table pms_product_attr_value comment 'spu属性值';
+alter table pms_product_attr_value;
 
 /*==============================================================*/
 /* Table: pms_sku_images                                        */
@@ -175,7 +175,7 @@ create table pms_sku_images
    primary key (id)
 );
 
-alter table pms_sku_images comment 'sku图片';
+alter table pms_sku_images;
 
 /*==============================================================*/
 /* Table: pms_sku_info                                          */
@@ -196,7 +196,7 @@ create table pms_sku_info
    primary key (sku_id)
 );
 
-alter table pms_sku_info comment 'sku信息';
+alter table pms_sku_info;
 
 /*==============================================================*/
 /* Table: pms_sku_sale_attr_value                               */
@@ -212,7 +212,7 @@ create table pms_sku_sale_attr_value
    primary key (id)
 );
 
-alter table pms_sku_sale_attr_value comment 'sku销售属性&值';
+alter table pms_sku_sale_attr_value;
 
 /*==============================================================*/
 /* Table: pms_spu_comment                                       */
@@ -238,7 +238,7 @@ create table pms_spu_comment
    primary key (id)
 );
 
-alter table pms_spu_comment comment '商品评价';
+alter table pms_spu_comment;
 
 /*==============================================================*/
 /* Table: pms_spu_images                                        */
@@ -254,7 +254,7 @@ create table pms_spu_images
    primary key (id)
 );
 
-alter table pms_spu_images comment 'spu图片';
+alter table pms_spu_images;
 
 /*==============================================================*/
 /* Table: pms_spu_info                                          */
@@ -273,7 +273,7 @@ create table pms_spu_info
    primary key (id)
 );
 
-alter table pms_spu_info comment 'spu信息';
+alter table pms_spu_info;
 
 /*==============================================================*/
 /* Table: pms_spu_info_desc                                     */
@@ -285,4 +285,4 @@ create table pms_spu_info_desc
    primary key (spu_id)
 );
 
-alter table pms_spu_info_desc comment 'spu信息介绍';
+alter table pms_spu_info_desc;
