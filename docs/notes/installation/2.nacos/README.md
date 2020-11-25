@@ -15,7 +15,7 @@ cd nacos/bin
 
 **Step 2: Start Server**
 
-*Linux/Unix/Mac*
+***Linux/Unix/Mac***
 
 Run the following command to start(standalone means non-cluster mode):
 
@@ -23,7 +23,7 @@ Run the following command to start(standalone means non-cluster mode):
 sh startup.sh -m standalone
 ```
 
-*Windows*
+***Windows***
 
 Run the following command to start(standalone means non-cluster mode), alternatively double click on `startup.cmd:`
 
@@ -31,21 +31,21 @@ Run the following command to start(standalone means non-cluster mode), alternati
 cmd startup.cmd -m standalone
 ```
 
-Step 3: Open on web browser
+**Step 3: Open on web browser**
 
-Go to [127.0.0.1:8848/nacos](127.0.0.1:8848/nacos). 
+Go to [127.0.0.1:8848/nacos](http://127.0.0.1:8848/nacos). 
 
 Default username and password is `nacos`.
 
-**Step 3: Shutdown Server**
+**Step 4: Shutdown Server**
 
-*Linux/Unix/Mac*
+***Linux/Unix/Mac***
 
 ```
 sh shutdown.sh
 ```
 
-*Windows*
+***Windows***
 
 click on `shutdown.cmd` or run the following command:
 

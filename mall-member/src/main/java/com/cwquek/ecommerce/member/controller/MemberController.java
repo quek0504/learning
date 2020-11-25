@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cwquek.ecommerce.member.feign.CouponFeignService;
 import com.cwquek.ecommerce.member.entity.MemberEntity;
 import com.cwquek.ecommerce.member.service.MemberService;
 import com.cwquek.ecommerce.common.utils.PageUtils;
@@ -29,6 +30,20 @@ import com.cwquek.ecommerce.common.utils.R;
 public class MemberController {
     @Autowired
     private MemberService memberService;
+
+    @Autowired
+    CouponFeignService couponFeignService;
+
+    @RequestMapping("/coupons")
+    public R test(){
+        MemberEntity memberEntity = new MemberEntity();
+        memberEntity.setNickname("John");
+
+        R membercoupons = couponFeignService.membercoupons();
+
+        return R.ok().put("member", memberEntity).put("coupons",membercoupons.get("coupons"));
+    }
+
 
     /**
      * list
