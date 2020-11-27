@@ -129,7 +129,7 @@ Check the configuration file inside the container.
 
 ```
 $ docker exec -it redis /bin/bash
-$ cat /etc/mysql/redis.conf
+$ cat /etc/redis/redis.conf
 
 $ exit
 ```

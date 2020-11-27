@@ -1,9 +1,11 @@
 package com.cwquek.ecommerce.product.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
+import java.util.List;
 
 import lombok.Data;
 
@@ -41,7 +43,7 @@ public class CategoryEntity implements Serializable {
 	 */
 	private Integer showStatus;
 	/**
-	 * sort
+	 * sort (assign Integer value to entity, 0 appears first, 1 appears next and so on)
 	 */
 	private Integer sort;
 	/**
@@ -57,4 +59,7 @@ public class CategoryEntity implements Serializable {
 	 */
 	private Integer productCount;
 
+	// mybatis plus annotation - exist false meaning this field is not from database
+	@TableField(exist=false)
+	private List<CategoryEntity> children;
 }
