@@ -2,6 +2,7 @@ package com.cwquek.ecommerce.product.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
@@ -41,6 +42,8 @@ public class CategoryEntity implements Serializable {
 	/**
 	 * [0-hide, 1-show]
 	 */
+	// mybatis plus annotation for logical delete
+	@TableLogic(value = "1", delval = "0")
 	private Integer showStatus;
 	/**
 	 * sort (assign Integer value to entity, 0 appears first, 1 appears next and so on)
