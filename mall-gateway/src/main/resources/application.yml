@@ -5,4 +5,30 @@ spring:
         - id: test_route
           uri: https://www.google.com
           predicates:
-            - Query=url,google
+           - Query=url,google
+
+        - id: product_route
+          uri: lb://mall-product
+          predicates:
+            - Path=/api/product/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment}
+
+        # frontend http://localhost:88/api/product/category/list/tree
+        # rewrite to http://localhost:10000/product/category/list/tree
+        # mall-product service at port 10000
+
+        - id: admin_route
+          uri: lb://mall-admin # load balance to mall-admin service discovered in nacos
+          predicates:
+            - Path=/api/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/admin/$\{segment}
+
+        # frontend http://localhost:88/api/${foo}
+        # rewrite to http://localhost:8080/mall-admin/${foo}
+        # mall-admin service at port 8080
+
+
+
+
