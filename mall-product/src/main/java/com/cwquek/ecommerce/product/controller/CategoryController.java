@@ -50,7 +50,7 @@ public class CategoryController {
     public R info(@PathVariable("catId") Long catId){
 		CategoryEntity category = categoryService.getById(catId);
 
-        return R.ok().put("category", category);
+        return R.ok().put("data", category);
     }
 
     /**
@@ -59,9 +59,10 @@ public class CategoryController {
     @RequestMapping("/save")
     //@RequiresPermissions("product:category:save")
     public R save(@RequestBody CategoryEntity category){
-		categoryService.save(category);
+          //categoryService.save(category);
+        Long newCatId = categoryService.insertReturnKey(category);
 
-        return R.ok();
+        return R.ok().put("newCatId", newCatId);
     }
 
     /**

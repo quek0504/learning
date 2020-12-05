@@ -59,11 +59,18 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
         baseMapper.deleteBatchIds(asList);
     }
 
+    @Override
+    public Long insertReturnKey(CategoryEntity category) {
+         baseMapper.insert(category);
+
+         return category.getCatId();
+    }
+
     private List<CategoryEntity> getChildrens(CategoryEntity root, List<CategoryEntity> allEntities){
 
         List<CategoryEntity> children = allEntities.stream().filter(categoryEntity -> {
             // get root's children
-            return categoryEntity.getParentCid() == root.getCatId();
+            return categoryEntity.getParentCid().equals(root.getCatId().longValue());
         }).map(childrenEntity ->{
             childrenEntity.setChildren(getChildrens(childrenEntity, allEntities));
             return childrenEntity;
