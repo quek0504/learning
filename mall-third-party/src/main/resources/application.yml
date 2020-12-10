@@ -1,0 +1,21 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+  application:
+    name: mall-third-party
+
+server:
+  port: 30000
+
+aws:
+  s3:
+    accessKey: #YOUR ACCESS KEY
+    secretKey: # YOUR SECRET KEY
+    bucketName: # YOUR BUCKET NAME
+    region: # YOUR REGION (format : eu-west-1, ap-southeast-1 etc)
+
+
+
+

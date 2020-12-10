@@ -14,6 +14,13 @@ spring:
           filters:
             - RewritePath=/api/(?<segment>.*),/$\{segment}
 
+        - id: third_party_route
+          uri: lb://mall-third-party
+          predicates:
+            - Path=/api/thirdparty/**
+          filter:
+            - RewritePath=/api/thirdparty/(?<segment>.*),/$\{segment}
+
         # frontend http://localhost:88/api/product/category/list/tree
         # rewrite to http://localhost:10000/product/category/list/tree
         # mall-product service at port 10000
