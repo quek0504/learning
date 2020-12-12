@@ -33,6 +33,9 @@ public class MallExceptionControllerAdvice {
 
     @ExceptionHandler(value = Throwable.class)
     public R handleException(Throwable throwable) {
+
+        log.error("Error: ", throwable);
+
         return R.error(BizCodeEnums.UKNOWN_EXCEPTION.getCode(), BizCodeEnums.UKNOWN_EXCEPTION.getMsg());
     }
 
