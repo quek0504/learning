@@ -1,11 +1,11 @@
 package com.cwquek.ecommerce.product.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
 
 import java.io.Serializable;
-
-import lombok.Data;
 
 /**
  * 
@@ -43,6 +43,9 @@ public class AttrGroupEntity implements Serializable {
 	/**
 	 * 所属分类id
 	 */
-	private Long catelogId;
+	private Long categoryId;
+
+	@TableField(exist = false)
+	private Long[] categoryPath;
 
 }

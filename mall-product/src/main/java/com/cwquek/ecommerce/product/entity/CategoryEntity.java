@@ -1,12 +1,11 @@
 package com.cwquek.ecommerce.product.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.Data;
 
 /**
  * 3 levels classification of products

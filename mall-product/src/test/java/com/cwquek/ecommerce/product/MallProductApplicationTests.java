@@ -1,19 +1,31 @@
 package com.cwquek.ecommerce.product;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.cwquek.ecommerce.product.entity.BrandEntity;
 import com.cwquek.ecommerce.product.service.BrandService;
+import com.cwquek.ecommerce.product.service.CategoryService;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.List;
+import java.util.Arrays;
 
+@Slf4j
 @SpringBootTest
 class MallProductApplicationTests {
 
 	@Autowired
 	BrandService brandService;
+
+	@Autowired
+	CategoryService categoryService;
+
+	@Test
+	void testFindCategoryPath() {
+		Long[] categoryPath = categoryService.findCategoryPath(100L);
+		// invalid categoryId test
+		// Long[] categoryPath = categoryService.findCategoryPath(1000L);
+		log.info("Complete path: {}", Arrays.asList(categoryPath));
+	}
 
 	@Test
 	void contextLoads() {

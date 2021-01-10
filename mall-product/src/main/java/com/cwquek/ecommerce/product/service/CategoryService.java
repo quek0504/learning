@@ -23,5 +23,13 @@ public interface CategoryService extends IService<CategoryEntity> {
     void removeMenuByIds(List<Long> asList);
 
     Long insertReturnKey(CategoryEntity category);
+
+    /**
+     * Find complete path of particular category
+     * [Level1,Level2,Level3]
+     * @param categoryId
+     * @return
+     */
+    Long[] findCategoryPath(Long categoryId);
 }
 
