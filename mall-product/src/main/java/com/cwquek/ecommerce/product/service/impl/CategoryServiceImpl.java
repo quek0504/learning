@@ -7,8 +7,11 @@ import com.cwquek.ecommerce.common.utils.PageUtils;
 import com.cwquek.ecommerce.common.utils.Query;
 import com.cwquek.ecommerce.product.dao.CategoryDao;
 import com.cwquek.ecommerce.product.entity.CategoryEntity;
+import com.cwquek.ecommerce.product.service.CategoryBrandRelationService;
 import com.cwquek.ecommerce.product.service.CategoryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +21,10 @@ import java.util.stream.Collectors;
 
 @Service("categoryService")
 public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity> implements CategoryService {
+
+    @Autowired
+    CategoryBrandRelationService categoryBrandRelationService;
+
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
         IPage<CategoryEntity> page = this.page(
@@ -71,6 +78,21 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
         List<Long> completePath = findCompletePath(categoryId);
 
         return (Long[]) completePath.toArray(new Long[completePath.size()]); // [Level1,Level2,Level3]
+    }
+
+    /**
+     * Cascade Update
+     * @param category
+     */
+    @Transactional
+    @Override
+    public void updateCascade(CategoryEntity category) {
+        // normal update pms_category table
+        this.updateById(category);
+
+        // update pms_category_brand_relation table
+        categoryBrandRelationService.updateCategory(category.getCatId(),category.getName());
+
     }
 
     private List<Long> findCompletePath(Long categoryId) {

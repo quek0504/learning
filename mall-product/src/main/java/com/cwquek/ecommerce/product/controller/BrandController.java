@@ -1,27 +1,18 @@
 package com.cwquek.ecommerce.product.controller;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
+import com.cwquek.ecommerce.common.utils.PageUtils;
+import com.cwquek.ecommerce.common.utils.R;
 import com.cwquek.ecommerce.common.valid.AddGroup;
 import com.cwquek.ecommerce.common.valid.UpdateGroup;
 import com.cwquek.ecommerce.common.valid.UpdateStatusGroup;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.cwquek.ecommerce.product.entity.BrandEntity;
 import com.cwquek.ecommerce.product.service.BrandService;
-import com.cwquek.ecommerce.common.utils.PageUtils;
-import com.cwquek.ecommerce.common.utils.R;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+import java.util.Arrays;
+import java.util.Map;
 
 
 /**
@@ -90,7 +81,7 @@ public class BrandController {
     @RequestMapping("/update")
     //@RequiresPermissions("product:brand:update")
     public R update(@Validated(UpdateGroup.class) @RequestBody BrandEntity brand){
-		brandService.updateById(brand);
+		brandService.updateCascade(brand);
 
         return R.ok();
     }
