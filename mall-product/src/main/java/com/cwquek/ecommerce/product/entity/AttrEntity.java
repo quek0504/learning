@@ -2,6 +2,7 @@ package com.cwquek.ecommerce.product.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -32,15 +33,20 @@ public class AttrEntity implements Serializable {
 	 */
 	private Integer searchType;
 	/**
+	 * [0-single value, 1-multiple values]
+	 */
+	private Integer valueType;
+	/**
 	 * 属性图标
 	 */
 	private String icon;
 	/**
 	 * 可选值列表[用逗号分隔]
 	 */
+	@JsonInclude(JsonInclude.Include.NON_EMPTY)
 	private String valueSelect;
 	/**
-	 * 属性类型[0-销售属性，1-基本属性，2-既是销售属性又是基本属性]
+	 * 属性类型[0-销售属性，1-基本属性]
 	 */
 	private Integer attrType;
 	/**

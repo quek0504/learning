@@ -1,8 +1,11 @@
 package com.cwquek.ecommerce.product.dao;
 
-import com.cwquek.ecommerce.product.entity.AttrAttrgroupRelationEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.cwquek.ecommerce.product.entity.AttrAttrgroupRelationEntity;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * 
@@ -13,5 +16,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface AttrAttrgroupRelationDao extends BaseMapper<AttrAttrgroupRelationEntity> {
-	
+
+    void deleteBatchRelation(@Param("entities") List<AttrAttrgroupRelationEntity> entities);
 }

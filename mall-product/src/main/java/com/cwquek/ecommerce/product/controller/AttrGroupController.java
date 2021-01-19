@@ -2,13 +2,18 @@ package com.cwquek.ecommerce.product.controller;
 
 import com.cwquek.ecommerce.common.utils.PageUtils;
 import com.cwquek.ecommerce.common.utils.R;
+import com.cwquek.ecommerce.product.entity.AttrEntity;
 import com.cwquek.ecommerce.product.entity.AttrGroupEntity;
+import com.cwquek.ecommerce.product.service.AttrAttrgroupRelationService;
 import com.cwquek.ecommerce.product.service.AttrGroupService;
+import com.cwquek.ecommerce.product.service.AttrService;
 import com.cwquek.ecommerce.product.service.CategoryService;
+import com.cwquek.ecommerce.product.vo.AttrGroupRelationVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 
@@ -28,6 +33,36 @@ public class AttrGroupController {
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private AttrService attrService;
+
+    @Autowired
+    private AttrAttrgroupRelationService relationService;
+
+    @PostMapping("/attr/relation")
+    public R addRelation(@RequestBody List<AttrGroupRelationVo> vos) {
+
+        relationService.saveBatch(vos);
+
+        return R.ok();
+
+    }
+
+    @GetMapping("/{attrGroupId}/attr/relation")
+    public R attrRelation(@PathVariable("attrGroupId") Long attrGroupId) {
+        List<AttrEntity> entities =  attrService.getAttrRelation(attrGroupId);
+
+        return R.ok().put("data",entities);
+    }
+
+    @GetMapping("/{attrGroupId}/noattr/relation")
+    public R attrNoRelation(@PathVariable("attrGroupId") Long attrGroupId,
+                            @RequestParam Map<String, Object> params) {
+        PageUtils page =  attrService.getAttrNoRelation(params, attrGroupId);
+
+        return R.ok().put("page",page);
+    }
 
     /**
      * list
@@ -78,6 +113,17 @@ public class AttrGroupController {
     //@RequiresPermissions("product:attrgroup:update")
     public R update(@RequestBody AttrGroupEntity attrGroup){
 		attrGroupService.updateById(attrGroup);
+
+        return R.ok();
+    }
+
+    /**
+     * delete relation
+     */
+    @PostMapping("/attr/relation/delete")
+    public R deleteRelation(@RequestBody AttrGroupRelationVo[] vos) {
+
+        attrService.deleteRelation(vos);
 
         return R.ok();
     }
