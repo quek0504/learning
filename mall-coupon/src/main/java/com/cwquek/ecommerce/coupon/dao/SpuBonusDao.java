@@ -1,7 +1,7 @@
 package com.cwquek.ecommerce.coupon.dao;
 
-import com.cwquek.ecommerce.coupon.entity.SpuBoundsEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.cwquek.ecommerce.coupon.entity.SpuBonusEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -12,6 +12,6 @@ import org.apache.ibatis.annotations.Mapper;
  * @date 2020-11-25 04:52:26
  */
 @Mapper
-public interface SpuBoundsDao extends BaseMapper<SpuBoundsEntity> {
+public interface SpuBonusDao extends BaseMapper<SpuBonusEntity> {
 	
 }

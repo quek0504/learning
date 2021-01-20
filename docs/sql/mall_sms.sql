@@ -30,7 +30,7 @@ drop table if exists sms_sku_full_reduction;
 
 drop table if exists sms_sku_ladder;
 
-drop table if exists sms_spu_bounds;
+drop table if exists sms_spu_bonus;
 
 /*==============================================================*/
 /* Table: sms_coupon                                            */
@@ -281,17 +281,17 @@ create table sms_sku_ladder
 alter table sms_sku_ladder comment '商品阶梯价格';
 
 /*==============================================================*/
-/* Table: sms_spu_bounds                                        */
+/* Table: sms_spu_bonus                                        */
 /*==============================================================*/
-create table sms_spu_bounds
+create table sms_spu_bonus
 (
    id                   bigint not null auto_increment,
    spu_id               bigint,
-   grow_bounds          decimal(18,4) comment 'growth points',
-   buy_bounds           decimal(18,4),
+   grow_bonus          decimal(18,4) comment 'growth points',
+   buy_bonus           decimal(18,4),
    work                 tinyint(1)
    comment '优惠生效情况[1111（四个状态位，从右到左）;0 - 无优惠，成长积分是否赠送;1 - 无优惠，购物积分是否赠送;2 - 有优惠，成长积分是否赠送;3 - 有优惠，购物积分是否赠送【状态位0：不赠送，1：赠送】]',
    primary key (id)
 );
 
-alter table sms_spu_bounds;
+alter table sms_spu_bonus;

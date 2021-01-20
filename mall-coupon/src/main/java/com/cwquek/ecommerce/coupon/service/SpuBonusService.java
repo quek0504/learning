@@ -2,7 +2,7 @@ package com.cwquek.ecommerce.coupon.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.cwquek.ecommerce.common.utils.PageUtils;
-import com.cwquek.ecommerce.coupon.entity.SpuBoundsEntity;
+import com.cwquek.ecommerce.coupon.entity.SpuBonusEntity;
 
 import java.util.Map;
 
@@ -13,7 +13,7 @@ import java.util.Map;
  * @email quek0504@gmail.com
  * @date 2020-11-25 04:52:26
  */
-public interface SpuBoundsService extends IService<SpuBoundsEntity> {
+public interface SpuBonusService extends IService<SpuBonusEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
 }

@@ -9,6 +9,7 @@ import com.cwquek.ecommerce.product.service.AttrGroupService;
 import com.cwquek.ecommerce.product.service.AttrService;
 import com.cwquek.ecommerce.product.service.CategoryService;
 import com.cwquek.ecommerce.product.vo.AttrGroupRelationVo;
+import com.cwquek.ecommerce.product.vo.AttrGroupWithAttrsVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,10 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 
-
 /**
- * 
- *
  * @author cwquek
  * @email quek0504@gmail.com
  * @date 2020-11-25 03:59:19
@@ -51,17 +49,25 @@ public class AttrGroupController {
 
     @GetMapping("/{attrGroupId}/attr/relation")
     public R attrRelation(@PathVariable("attrGroupId") Long attrGroupId) {
-        List<AttrEntity> entities =  attrService.getAttrRelation(attrGroupId);
+        List<AttrEntity> entities = attrService.getAttrRelation(attrGroupId);
 
-        return R.ok().put("data",entities);
+        return R.ok().put("data", entities);
     }
 
     @GetMapping("/{attrGroupId}/noattr/relation")
     public R attrNoRelation(@PathVariable("attrGroupId") Long attrGroupId,
                             @RequestParam Map<String, Object> params) {
-        PageUtils page =  attrService.getAttrNoRelation(params, attrGroupId);
+        PageUtils page = attrService.getAttrNoRelation(params, attrGroupId);
 
-        return R.ok().put("page",page);
+        return R.ok().put("page", page);
+    }
+
+    @GetMapping("/{categoryId}/withattr")
+    public R getAttrGroupWithAttrs(@PathVariable("categoryId") Long categoryId) {
+        List<AttrGroupWithAttrsVo> vos = attrGroupService.getAttrGroupWithAttrsByCatId(categoryId);
+
+        return R.ok().put("data", vos);
+
     }
 
     /**
@@ -70,7 +76,7 @@ public class AttrGroupController {
     @RequestMapping("/list/{categoryId}")
     //@RequiresPermissions("product:attrgroup:list")
     public R list(@RequestParam Map<String, Object> params,
-                  @PathVariable("categoryId") Long categoryId){
+                  @PathVariable("categoryId") Long categoryId) {
         // PageUtils page = attrGroupService.queryPage(params);
 
         PageUtils page = attrGroupService.queryPage(params, categoryId);
@@ -84,10 +90,10 @@ public class AttrGroupController {
      */
     @RequestMapping("/info/{attrGroupId}")
     //@RequiresPermissions("product:attrgroup:info")
-    public R info(@PathVariable("attrGroupId") Long attrGroupId){
-		AttrGroupEntity attrGroup = attrGroupService.getById(attrGroupId);
+    public R info(@PathVariable("attrGroupId") Long attrGroupId) {
+        AttrGroupEntity attrGroup = attrGroupService.getById(attrGroupId);
 
-		Long categoryId = attrGroup.getCategoryId();
+        Long categoryId = attrGroup.getCategoryId();
         Long[] path = categoryService.findCategoryPath(categoryId);
 
         attrGroup.setCategoryPath(path);
@@ -100,8 +106,8 @@ public class AttrGroupController {
      */
     @RequestMapping("/save")
     //@RequiresPermissions("product:attrgroup:save")
-    public R save(@RequestBody AttrGroupEntity attrGroup){
-		attrGroupService.save(attrGroup);
+    public R save(@RequestBody AttrGroupEntity attrGroup) {
+        attrGroupService.save(attrGroup);
 
         return R.ok();
     }
@@ -111,8 +117,8 @@ public class AttrGroupController {
      */
     @RequestMapping("/update")
     //@RequiresPermissions("product:attrgroup:update")
-    public R update(@RequestBody AttrGroupEntity attrGroup){
-		attrGroupService.updateById(attrGroup);
+    public R update(@RequestBody AttrGroupEntity attrGroup) {
+        attrGroupService.updateById(attrGroup);
 
         return R.ok();
     }
@@ -133,8 +139,8 @@ public class AttrGroupController {
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("product:attrgroup:delete")
-    public R delete(@RequestBody Long[] attrGroupIds){
-		attrGroupService.removeByIds(Arrays.asList(attrGroupIds));
+    public R delete(@RequestBody Long[] attrGroupIds) {
+        attrGroupService.removeByIds(Arrays.asList(attrGroupIds));
 
         return R.ok();
     }

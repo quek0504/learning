@@ -10,7 +10,7 @@
 
 The original admin system was bootstrapped with [renren-fast-vue](https://github.com/renrenio/renren-fast-vue) and [renren-fast](https://gitee.com/renrenio/renren-fast). 
 
-I am going to rewrite admin system (eg. admin interface, authentication, logging) and third party services (eg. Object Storage Service).
+TODO : admin system (eg. authentication, logging)
 
 mall-frontend : [admin frontend interface](https://github.com/quek0504/admin-frontend) based on Ant Design Pro React
 

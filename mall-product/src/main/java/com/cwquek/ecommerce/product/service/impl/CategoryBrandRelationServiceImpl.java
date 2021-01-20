@@ -12,12 +12,14 @@ import com.cwquek.ecommerce.product.dao.CategoryDao;
 import com.cwquek.ecommerce.product.entity.BrandEntity;
 import com.cwquek.ecommerce.product.entity.CategoryBrandRelationEntity;
 import com.cwquek.ecommerce.product.entity.CategoryEntity;
+import com.cwquek.ecommerce.product.service.BrandService;
 import com.cwquek.ecommerce.product.service.CategoryBrandRelationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 
 @Service("categoryBrandRelationService")
@@ -28,6 +30,12 @@ public class CategoryBrandRelationServiceImpl extends ServiceImpl<CategoryBrandR
 
     @Autowired
     CategoryDao categoryDao;
+
+    @Autowired
+    CategoryBrandRelationDao relationDao;
+
+    @Autowired
+    BrandService brandService;
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -49,7 +57,7 @@ public class CategoryBrandRelationServiceImpl extends ServiceImpl<CategoryBrandR
         QueryWrapper<CategoryBrandRelationEntity> query = new QueryWrapper<>();
         query.and(i -> i.eq("brand_id", brandId)).eq("category_id", categoryId);
         List<CategoryBrandRelationEntity> entity = baseMapper.selectList(query);
-        if(entity.size() >= 1) {
+        if (entity.size() >= 1) {
             return false;
         }
 
@@ -81,6 +89,20 @@ public class CategoryBrandRelationServiceImpl extends ServiceImpl<CategoryBrandR
     public void updateCategory(Long catId, String name) {
         // self define mapper
         this.baseMapper.updateCategory(catId, name);
+    }
+
+    @Override
+    public List<BrandEntity> getBrandsByCatId(Long catId) {
+
+        List<CategoryBrandRelationEntity> relation = relationDao.selectList(new QueryWrapper<CategoryBrandRelationEntity>().eq("category_id", catId));
+
+        List<BrandEntity> collect = relation.stream().map(item -> {
+            Long brandId = item.getBrandId();
+            BrandEntity byId = brandService.getById(brandId);
+            return byId;
+        }).collect(Collectors.toList());
+
+        return collect;
     }
 
 }
