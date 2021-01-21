@@ -17,7 +17,7 @@ public class Skus {
     private List<String> descar; // description array
     private int fullCount;
     private BigDecimal discount;
-    private int countStatus;
+    private int stackStatus; // stack with other discount
     private BigDecimal fullPrice;
     private BigDecimal reducePrice;
     private int priceStatus;

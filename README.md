@@ -4,7 +4,7 @@
 
 **Reference repo** : [gulimall backend](https://github.com/cosmoswong/gulimall), [gulimall frontend (vue)](https://github.com/raymond-zhao/cat-mall-vue)
 
-**Current progress** : 72 / 408
+**Current progress** : 92 / 408
 
 ## Introduction
 

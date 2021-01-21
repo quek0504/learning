@@ -1,19 +1,15 @@
 package com.cwquek.ecommerce.coupon.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.cwquek.ecommerce.coupon.entity.SkuFullReductionEntity;
-import com.cwquek.ecommerce.coupon.service.SkuFullReductionService;
+import com.cwquek.ecommerce.common.to.SkuReductionTo;
 import com.cwquek.ecommerce.common.utils.PageUtils;
 import com.cwquek.ecommerce.common.utils.R;
+import com.cwquek.ecommerce.coupon.entity.SkuFullReductionEntity;
+import com.cwquek.ecommerce.coupon.service.SkuFullReductionService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
+import java.util.Map;
 
 
 
@@ -29,6 +25,14 @@ import com.cwquek.ecommerce.common.utils.R;
 public class SkuFullReductionController {
     @Autowired
     private SkuFullReductionService skuFullReductionService;
+
+    @PostMapping("/saveinfo")
+    //@RequiresPermissions("coupon:skufullreduction:list")
+    public R saveInfo(@RequestBody SkuReductionTo reductionTo){
+        skuFullReductionService.saveSkuReduction(reductionTo);
+
+        return R.ok();
+    }
 
     /**
      * list

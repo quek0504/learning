@@ -51,7 +51,7 @@ public class SpuBonusController {
     /**
      * save
      */
-    @RequestMapping("/save")
+    @PostMapping("/save")
     //@RequiresPermissions("coupon:spubonus:save")
     public R save(@RequestBody SpuBonusEntity spuBonus){
 		spuBonusService.save(spuBonus);

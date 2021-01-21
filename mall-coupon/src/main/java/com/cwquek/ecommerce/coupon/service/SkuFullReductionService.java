@@ -1,6 +1,7 @@
 package com.cwquek.ecommerce.coupon.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.cwquek.ecommerce.common.to.SkuReductionTo;
 import com.cwquek.ecommerce.common.utils.PageUtils;
 import com.cwquek.ecommerce.coupon.entity.SkuFullReductionEntity;
 
@@ -16,5 +17,8 @@ import java.util.Map;
 public interface SkuFullReductionService extends IService<SkuFullReductionEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    void saveSkuReduction(SkuReductionTo reductionTo);
+
 }
 

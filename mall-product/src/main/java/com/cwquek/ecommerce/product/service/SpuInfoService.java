@@ -3,6 +3,7 @@ package com.cwquek.ecommerce.product.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.cwquek.ecommerce.common.utils.PageUtils;
 import com.cwquek.ecommerce.product.entity.SpuInfoEntity;
+import com.cwquek.ecommerce.product.vo.SpuSaveVo;
 
 import java.util.Map;
 
@@ -16,5 +17,9 @@ import java.util.Map;
 public interface SpuInfoService extends IService<SpuInfoEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
-}
 
+    void saveSpuInfo(SpuSaveVo vo);
+
+    void saveBaseSpuInfo(SpuInfoEntity spuInfoEntity);
+
+}
